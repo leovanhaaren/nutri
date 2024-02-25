@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Nutrition Report</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
+</head>
+
+<body>
+  <main>
+    {{ if .DailyReports}}
+    <h1>Nutrition Report</h1>
+    {{range .DailyReports}}
+    <h6>Daily Report for {{.Date}}</h6>
+    {{ if .Entries }}
+    <table>
+      <tr>
+        <th>Food</th>
+        <th>Calories</th>
+        <th>Protein</th>
+        <th>Carbs</th>
+        <th>Fat</th>
+      </tr>
+      {{ range .Entries }}
+      <tr>
+        <td>{{ .Name }}</td>
+        <td>{{ .Calories }}</td>
+        <td>{{ .Protein }}</td>
+        <td>{{ .Carbs }}</td>
+        <td>{{ .Fat }}</td>
+      </tr>
+      {{ end }}
+    </table>
+    {{ end }}
+
+    {{ end }}
+
+    {{ else }}
+    <p>No food entries added yet.</p>
+    {{ end }}
+
+    <a href="/">Back</a>
+  </main>
+</body>
+
+</html>
